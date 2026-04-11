@@ -21,15 +21,16 @@ const api = async (endpoint, options = {}) => {
     : options.body;
 
   const res = await fetch(`${API_BASE}${endpoint}`, {
-    method: options.method || "GET",
-    headers,
-    ...(body !== undefined ? { body } : {}),
+  method: options.method || "GET",
+  headers,
+  credentials: "include",   // 🔥 YE LINE ADD KARO
+  ...(body !== undefined ? { body } : {}),
   });
 
   const data = await res.json();
   if (!res.ok) throw new Error(data.message || "Something went wrong");
   return data;
-};
+  };
 
 const Auth = {
   register:       (name,email,pwd) => api("/auth/register", { method:"POST", body:{ name, email, password:pwd } }),
