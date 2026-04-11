@@ -18,25 +18,9 @@ app.use(helmet());
 app.set("trust proxy", 1); // Required for Render/Railway (behind reverse proxy)
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
-const ORIGINS = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "http://localhost:4173",
-  ...(process.env.CLIENT_URL || "").split(",").map(o => o.trim()).filter(Boolean),
-];
-
 app.use(cors({
-  origin: (origin, cb) => {
-    // Allow requests with no origin (mobile apps, curl, Postman)
-    if (!origin) return cb(null, true);
-    if (ORIGINS.includes(origin)) return cb(null, true);
-    // Allow any vercel.app subdomain
-    if (origin.endsWith(".vercel.app")) return cb(null, true);
-    cb(new Error(`CORS blocked: ${origin}`));
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: true,
+  credentials: true
 }));
 
 // ── Rate Limiting ─────────────────────────────────────────────────────────────
