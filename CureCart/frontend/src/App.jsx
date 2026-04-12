@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_BASE = "https://curecar-in.onrender.com/api";
 const INSTAGRAM_URL  = "https://www.instagram.com/amansingh84538/";
 
 // ─── API LAYER ────────────────────────────────────────────────────────────────

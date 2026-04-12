@@ -19,7 +19,7 @@ app.set("trust proxy", 1); // Required for Render/Railway (behind reverse proxy)
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: true,
+  origin: "https://curecar-in.vercel.app",
   credentials: true
 }));
 
